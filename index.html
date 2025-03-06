@@ -1,1 +1,252 @@
-"hello"  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('images/background.jpg') no-repeat center center fixed, linear-gradient(to bottom, #1b2838, #0f1a25);
+            background-size: cover;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            
+        }
+        .header {
+            background: rgba(23, 26, 33, 0.9);
+            padding: 20px;
+            text-align: left;
+            border-bottom: 3px solid #66c0f4;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+        .header h1, .header p {
+            position: relative;
+            z-index: 1;
+            margin-left: 20px;
+        }
+        .profile-section {
+            display: flex;
+            background: rgba(42, 71, 94, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .profile-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('profile.jpg') no-repeat center center;
+            background-size: cover;
+            opacity: 0.3;
+            z-index: 0;
+        }
+        .profile-info {
+            flex: 2;
+            padding-left: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .profile-info h1 {
+            margin: 0;
+        }
+        .avatar {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            border: 3px solid transparent;
+            animation: fireGlow 1.5s infinite alternate;
+        }
+        .avatar img {
+            width: 100%;
+            height: 100%;
+        }
+        .slider {
+            position: relative;
+            width: 100%; /* Same width as profile-section */
+            overflow: hidden;
+            margin: auto;
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slides img {
+            width: 100%;
+            object-fit: cover;
+        }
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .prev { left: 10px; }
+        .next { right: 10px; }
+        @keyframes fireGlow {
+            0% { border-color: rgba(255, 94, 0, 0.8); box-shadow: 0 0 40px rgba(255, 94, 0, 0.8); }
+            50% { border-color: rgba(255, 0, 0, 0.8); box-shadow: 0 0 80px rgba(255, 0, 0, 0.8); }
+            100% { border-color: rgba(255, 94, 0, 0.8); box-shadow: 0 0 20px rgba(255, 94, 0, 0.8); }
+        }
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: white;
+            font-size: 10px;
+            user-select: none;
+            z-index: 1000;
+            pointer-events: none;
+            animation: snowfall linear infinite;
+        }
+        @keyframes snowfall {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        .bonfire {
+            position: relative;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            overflow: hidden;
+            background: transparent;
+            z-index: -1; /* Moves the bonfire behind other elements */
+            pointer-events: none; /* Prevents it from interfering with interactions */
+        }
+        .flame {
+            width: 20px;
+            height: 60px;
+            background: linear-gradient(to top, orange, red, transparent);
+            position: absolute;
+            bottom: 0;
+            border-radius: 50% 50% 20% 20%;
+            animation: flicker 0.3s infinite alternate, rise var(--rise-duration, 2s) infinite ease-in;
+        }
+        .flame:nth-child(odd) {
+            height: 70px;
+            width: 25px;
+            background: linear-gradient(to top, yellow, orange, transparent);
+            animation-duration: 0.4s, var(--rise-duration, 2.2s);
+        }
+        .flame:nth-child(even) {
+            height: 80px;
+            width: 30px;
+            background: linear-gradient(to top, red, orange, transparent);
+            animation-duration: 0.35s, var(--rise-duration, 2.5s);
+        }
+        @keyframes flicker {
+            0% { transform: scale(1) translateY(0); opacity: 1; }
+            100% { transform: scale(1.2) translateY(-5px); opacity: 0.8; }
+        }
+        @keyframes rise {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-70px) scale(1.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="avatar">
+                <img src="images/profile.gif" alt="Avatar">
+            </div>
+            <div>
+                <h1>Anna Psyktova</h1>
+                <p>Level 10 | <span style="color:#66c0f4;">Online</span></p>
+            </div>
+        </div>
+        <div class="profile-section">
+            <div class="profile-info">
+                <h1>Anna Psyktova</h1>
+                <p>will change it later.</p>
+                <div class="badges">
+                    <img src="badge1.png" alt="Badge 1">
+                    <img src="badge2.png" alt="Badge 2">
+                    <img src="badge3.png" alt="Badge 3">
+                </div>
+            </div>
+        </div>
+        <h2>Gallery</h2>
+            <div class="slider">
+            <div class="slides">
+                <img src="images/image1.png" alt="Image 1">
+                <img src="images/image2.png" alt="Image 2">
+                <img src="images/image3.png" alt="Image 3">
+        </div>
+        <button class="prev" onclick="prevSlide()">&#10094;</button>
+        <button class="next" onclick="nextSlide()">&#10095;</button>
+    </div>
+    </div>
+    <div class="bonfire" id="bonfire"></div>
+    <script>
+        function createFlame() {
+            const flame = document.createElement('div');
+            flame.classList.add('flame');
+            flame.style.left = `${Math.random() * 100}%`;
+            flame.style.setProperty('--rise-duration', `${1.5 + Math.random() * 1.5}s`);
+            document.getElementById('bonfire').appendChild(flame);
+        }
+        setInterval(createFlame, 100);
+    </script>
+    <script>
+        let slideIndex = 0;
+        const slides = document.querySelector(".slides");
+        function showSlide(index) {
+            const totalSlides = slides.children.length;
+            if (index >= totalSlides) slideIndex = 0;
+            if (index < 0) slideIndex = totalSlides - 1;
+            slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+        }
+        function nextSlide() {
+            slideIndex++;
+            showSlide(slideIndex);
+        }
+        function prevSlide() {
+            slideIndex--;
+            showSlide(slideIndex);
+        }
+        function createSnowflakes() {
+            const snowflakeCount = 50;
+            for (let i = 0; i < snowflakeCount; i++) {
+                let snowflake = document.createElement("div");
+                snowflake.innerHTML = "❄";
+                snowflake.classList.add("snowflake");
+                document.body.appendChild(snowflake);
+                
+                let randomSize = Math.random() * 10 + 10;
+                let randomLeft = Math.random() * window.innerWidth;
+                let randomDuration = Math.random() * 5 + 5;
+                let randomDelay = Math.random() * 5;
+                
+                snowflake.style.fontSize = `${randomSize}px`;
+                snowflake.style.left = `${randomLeft}px`;
+                snowflake.style.animationDuration = `${randomDuration}s`;
+                snowflake.style.animationDelay = `-${randomDelay}s`;
+            }
+        }
+        createSnowflakes();
+    </script>
+</body>
+</html>
